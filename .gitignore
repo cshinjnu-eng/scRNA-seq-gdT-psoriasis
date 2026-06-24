@@ -1,0 +1,9 @@
+# Large data objects are distributed via GitHub Releases, not tracked in Git
+*.rds
+*.h5ad
+*.loom
+*.RData
+
+# OS / editor cruft
+.DS_Store
+.Rhistory
