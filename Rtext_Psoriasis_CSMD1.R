@@ -87,7 +87,34 @@ for( i in names(obj)){
   obj[[i]] <- RunPCA(obj[[i]])
   obj[[i]] <- RunUMAP(obj[[i]], dims = 1:20)
   obj[[i]] <- FindNeighbors(obj[[i]], dims = pc.num) %>% FindClusters(resolution = 0.3)#
-  tmp <- RemoveDoublets(obj[[i]], doublet.rate=0.008,pc.num=pc.num)
+
+  cell_count <- ncol(obj[[i]])
+  if ( cell_count < 750 ){
+    doublet_rate = 0.004
+  }else if ( cell_count %in% 750:1499 ) {
+    doublet_rate = 0.008
+  }else if ( cell_count %in% 1500:2499 ) {
+    doublet_rate = 0.016
+  }else if ( cell_count %in% 2500:3499 ) {
+    doublet_rate = 0.023
+  }else if ( cell_count %in% 3500:4499 ) {
+    doublet_rate = 0.031
+  }else if ( cell_count %in% 4500:5499 ) {
+    doublet_rate = 0.039
+  }else if ( cell_count %in% 5500:6499 ) {
+    doublet_rate = 0.046
+  }else if ( cell_count %in% 6500:7499 ) {
+    doublet_rate = 0.054
+  }else if ( cell_count %in% 7500:8499 ) {
+    doublet_rate = 0.061
+  }else if ( cell_count %in% 8500:9499 ) {
+    doublet_rate = 0.069
+  }else if ( cell_count %in% 9500:10499 ) {
+    doublet_rate = 0.076
+  }else if ( cell_count >= 10500 ) {
+    doublet_rate = 0.1
+  }
+  tmp <- RemoveDoublets(obj[[i]], doublet.rate=doublet_rate, pc.num=pc.num)
   obj_rm[[i]] <- tmp$obj
   doublets_plot[[i]] <- tmp$plot
 }
