@@ -17,7 +17,7 @@ Analysis code and processed data accompanying the manuscript (under revision).
 | ----------------------- | --------------------------------------------------------------- |
 | Species                 | Human                                                           |
 | Quality control         | `nFeature_RNA` 200–8,000; `percent.MT` < 10%; `percent.HB` < 3% |
-| Doublet removal         | DoubletFinder (expected doublet rate 0.008)                     |
+| Doublet removal         | DoubletFinder (cell-count-dependent rate, 0.004–0.100)          |
 | Feature selection       | 2,000 highly variable genes (vst)                               |
 | Batch integration       | FastMNN                                                         |
 | Clustering              | Louvain, resolution 0.5                                         |
